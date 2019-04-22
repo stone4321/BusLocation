@@ -57,13 +57,13 @@
                 <li class="acitve">实时查询</li>
             </ol>
             <div class="search form-group col-sm-3 col-xs-5">
-                <select name="" id="" class="form-control ">
+                <select name=""  class="form-control ">
                 </select>
             </div>
-            <button class="refresh btn btn-primary">
-                <i class="iconfont icon-shuaxin"></i>
-                <span>刷新(<b>0</b>s)</span>
-            </button>
+            <div class="station form-group col-sm-3 col-xs-5 visible-xs">
+                <select name=""  class="form-control ">
+                </select>
+            </div>
             <div id="map"></div>
         </div>
     </div>
@@ -113,8 +113,6 @@
         let $select = $('.search > select');
         //1.获取路线信息
         let routeMessage = [];
-        let trackMessage = [];
-
         $.ajax('http://47.95.14.126:8080/busposition/bus/route/station',{
             type: 'get',
             success: function(data){
@@ -126,24 +124,11 @@
             async: false
         });
 
-        $.ajax('http://47.95.14.126:8080/busposition/bus/track',{
-            type: 'get',
-            success: function(data){
-                trackMessage = data.data;
-            },
-            error: function(xhr){
-                alert(xhr.status);
-            },
-            async: false
-        });
-
         //2.初始化地图
-        let map = new MapUtil("map",routeMessage,trackMessage);
+        let map = new MapUtil("map",routeMessage,null);
         //3.初始化下拉列表
         map.initialDropdown($select);
-        //4.初始化刷新按钮
-        map.initialRefreshBtn($('.refresh'));
-        //5.响应式模块
+        //4.响应式模块
         if(windowWidth >= 768){
             let $sidenav = $('.sidenav');
             let selector = '.sidenav .sidenav-item';
@@ -155,17 +140,21 @@
             map.addStationMarkersClick();
             //3.动态创建侧边栏
             map.initialSidenav($sidenav,'.sidenav .sidenav-item');
-            //4.监听下拉列表点击事件
-            map.addDropdownChangePC($select,$sidenav,selector);
+            //4.监听下拉列表点击事件（待做）
+            // map.addDropdownChangePC($select,$sidenav,selector);
         }
         if(windowWidth < 768){
             let $pop = $('.station-pop');
             //1.设置高度
             $('.contain #map').height(windowHeight - 100);
-            //2.监听下拉列表点击事件
-            map.addDropdownChangePhone($select,$pop);
-            //3.添加手机站点信息弹窗点击事件
+            //2.初始化站点下拉列表
+            map.initialStationDropdown($('.station > select'));
+            //3.监听路线下拉列表点击事件
+            map.addDropdownChangePhone($select,$pop,$('.station > select'));
+            //4.添加手机站点信息弹窗点击事件
             map.addStationMarkersPop($pop);
+            //5.监听站点下拉列表点击事件
+            map.addStationDropdownChange($('.station > select'));
         }
     })
 </script>

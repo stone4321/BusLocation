@@ -20,15 +20,18 @@ body {
     font-size: 16px;
     margin-bottom: 10px;
 }
-.contain .search {
+.contain .form-group {
     position: absolute;
-    right: 150px;
     top: 60px;
     z-index: 100;
 }
-.contain .search .form-control {
+.contain .form-group .form-control {
     height: 37px;
 }
+.contain .search {
+    right: 150px;
+}
+
 .contain .refresh {
     position: absolute;
     right: 35px;
@@ -55,8 +58,13 @@ body {
         left: 15px;
         right: auto;
     }
+    .contain .station {
+        right: 15px;
+        left: auto;
+    }
     .contain .search,
-    .contain .refresh {
+    .contain .refresh,
+    .contain .station{
         top: 15px;
     }
     body .bottom-nav {
