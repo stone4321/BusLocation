@@ -103,7 +103,7 @@
 <!--引入百度地图API-->
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Hn8yCUyLlsPxzhCIdG8wETGiGtViLCHI"></script>
 <!--引入百度地图事件包装器-->
-<script src="js/BMapLib_EventWrapper.js"></script>
+<script src="js/EventWrapper.js"></script>
 <!--引入地图操作类-->
 <script src="js/mapUtil.js"></script>
     <script>
@@ -125,6 +125,7 @@
             },
             async: false
         });
+        console.log(routeMessage);
 
         $.ajax('http://47.95.14.126:8080/busposition/bus/track',{
             type: 'get',
@@ -136,10 +137,10 @@
             },
             async: false
         });
-
+        console.log(trackMessage);
         //2.初始化地图
         let map = new MapUtil("map",routeMessage,trackMessage);
-        //3.初始化下拉列表
+        //3.初始化路线下拉列表
         map.initialDropdown($select);
         //4.初始化刷新按钮
         map.initialRefreshBtn($('.refresh'));

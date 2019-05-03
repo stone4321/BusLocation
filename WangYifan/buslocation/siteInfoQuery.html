@@ -103,7 +103,7 @@
 <!--引入百度地图API-->
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Hn8yCUyLlsPxzhCIdG8wETGiGtViLCHI"></script>
 <!--引入百度地图事件包装器-->
-<script src="js/BMapLib_EventWrapper.js"></script>
+<script src="js/EventWrapper.js"></script>
 <!--引入地图操作类-->
 <script src="js/mapUtil.js"></script>
     <script>
@@ -140,8 +140,8 @@
             map.addStationMarkersClick();
             //3.动态创建侧边栏
             map.initialSidenav($sidenav,'.sidenav .sidenav-item');
-            //4.监听下拉列表点击事件（待做）
-            // map.addDropdownChangePC($select,$sidenav,selector);
+            //4.监听下拉列表点击事件
+            map.addDropdownChangePC($select,$sidenav,selector);
         }
         if(windowWidth < 768){
             let $pop = $('.station-pop');

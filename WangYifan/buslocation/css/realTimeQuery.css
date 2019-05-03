@@ -5,9 +5,13 @@ body {
 .sidenav .list-group-item i {
     display: inline-block;
     /*vertical-align: text-bottom;*/
-    width: 16px;
-    height: 16px;
-    background: url(https://dummyimage.com/16x16/000/fff) no-repeat;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    background-color: #5793da;
 }
 .sidenav .list-group-item:first-child i {
     background: none;
@@ -41,6 +45,9 @@ body {
 .contain #map {
     height: 500px;
     background-color: #ccc;
+}
+.infoContent p {
+    margin-bottom: 0;
 }
 /*内容区结束*/
 /*响应式模块开始*/

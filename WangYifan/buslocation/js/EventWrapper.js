@@ -1,29 +1,28 @@
 /**
- * @fileoverview °Ù¶ÈµØÍ¼APIÊÂ¼ş°ü×°Æ÷
- * ´Ë´úÂë¿ÉÊ¹ÓÃclosure compilerµÄadvancedÄ£Ê½½øĞĞÑ¹Ëõ
+ * @fileoverview ç™¾åº¦åœ°å›¾APIäº‹ä»¶åŒ…è£…å™¨
+ * æ­¤ä»£ç å¯ä½¿ç”¨closure compilerçš„advancedæ¨¡å¼è¿›è¡Œå‹ç¼©
  * @author Baidu Map Api Group 
  * @version 1.2
  */
 /** 
- * @namespace BMapµÄËùÓĞlibraryÀà¾ù·ÅÔÚBMapLibÃüÃû¿Õ¼äÏÂ
+ * @namespace BMapçš„æ‰€æœ‰libraryç±»å‡æ”¾åœ¨BMapLibå‘½åç©ºé—´ä¸‹
  */
-var BMapLib = window.BMapLib || {};
+window['BMapLib'] = window['BMapLib'] || {};
+window['BMapLib']['EventWrapper'] = window['BMapLib']['EventWrapper'] || {};
+(function(){
 /**
- * ÊÂ¼ş·â×°Æ÷µÄ¾²Ì¬Àà£¬²»¿ÉÊµÀı»¯
+ * äº‹ä»¶å°è£…å™¨çš„é™æ€ç±»
  * @class EventWrapper
  */
-BMapLib.EventWrapper = window.BMapLib.EventWrapper || {};
-(function(){
-
-//var EventWrapper = window.BMapLib.EventWrapper;
+var EventWrapper = window['BMapLib']['EventWrapper'];
 /**
- * Ìí¼ÓDOMÊÂ¼ş¼àÌıº¯Êı
- * @param {HTMLElement} element DOMÔªËØ
- * @param {String} event ÊÂ¼şÃû³Æ
- * @param {Function} handler ÊÂ¼ş´¦Àíº¯Êı
- * @returns {MapsEventListener} ÊÂ¼ş¼àÌı¶ÔÏó
+ * æ·»åŠ DOMäº‹ä»¶ç›‘å¬å‡½æ•°
+ * @param {HTMLElement} DOMå…ƒç´ 
+ * @param {String} äº‹ä»¶åç§°
+ * @param {Function} äº‹ä»¶å¤„ç†å‡½æ•°
+ * @returns {MapsEventListener} äº‹ä»¶ç›‘å¬å¯¹è±¡
  */
-BMapLib.EventWrapper.addDomListener = function(instance, eventName, handler) {
+EventWrapper['addDomListener'] = function(instance, eventName, handler) {
     if (instance.addEventListener) {
         instance.addEventListener(eventName, handler, false);
     }
@@ -36,52 +35,52 @@ BMapLib.EventWrapper.addDomListener = function(instance, eventName, handler) {
     return new MapsEventListener(instance, eventName, handler, MapsEventListener.DOM_EVENT);
 };
 /**
- * Ìí¼ÓDOMÊÂ¼ş¼àÌıº¯Êı£¬º¯Êı½öÖ´ĞĞÒ»´Î
- * @param {HTMLElement} element DOMÔªËØ
- * @param {String} event ÊÂ¼şÃû³Æ
- * @param {Function} handler ÊÂ¼ş´¦Àíº¯Êı
- * @returns {MapsEventListener} ÊÂ¼ş¼àÌı¶ÔÏó
+ * æ·»åŠ DOMäº‹ä»¶ç›‘å¬å‡½æ•°ï¼Œå‡½æ•°ä»…æ‰§è¡Œä¸€æ¬¡
+ * @param {HTMLElement} DOMå…ƒç´ 
+ * @param {String} äº‹ä»¶åç§°
+ * @param {Function} äº‹ä»¶å¤„ç†å‡½æ•°
+ * @returns {MapsEventListener} äº‹ä»¶ç›‘å¬å¯¹è±¡
  */
-BMapLib.EventWrapper.addDomListenerOnce = function(instance, eventName, handler) {
+EventWrapper['addDomListenerOnce'] = function(instance, eventName, handler) {
     var eventListener = EventWrapper['addDomListener'](instance, eventName, function(){
-        // ÒÆ³ı
+        // ç§»é™¤
         EventWrapper['removeListener'](eventListener);
         return handler.apply(this, arguments);
     });
     return eventListener;
 };
 /**
- * Ìí¼ÓµØÍ¼ÊÂ¼ş¼àÌıº¯Êı
- * @param {Object} instance ÊµÀı
- * @param {String} event ÊÂ¼şÃû³Æ
- * @param {Function} handler ÊÂ¼ş´¦Àíº¯Êı
- * @returns {MapsEventListener} ÊÂ¼ş¼àÌı¶ÔÏó
+ * æ·»åŠ åœ°å›¾äº‹ä»¶ç›‘å¬å‡½æ•°
+ * @param {Object} å®ä¾‹
+ * @param {String} äº‹ä»¶åç§°
+ * @param {Function} äº‹ä»¶å¤„ç†å‡½æ•°
+ * @returns {MapsEventListener} äº‹ä»¶ç›‘å¬å¯¹è±¡
  */
-BMapLib.EventWrapper.addListener = function(instance, eventName, handler) {
+EventWrapper['addListener'] = function(instance, eventName, handler) {
     instance.addEventListener(eventName, handler);
     return new MapsEventListener(instance, eventName, handler, MapsEventListener.MAP_EVENT);
 };
 /**
- * Ìí¼ÓµØÍ¼ÊÂ¼ş¼àÌıº¯Êı£¬º¯Êı½öÖ´ĞĞÒ»´Î
- * @param {Object} instance ĞèÒª¼àÌıµÄÊµÀı
- * @param {String} event ÊÂ¼şÃû³Æ
- * @param {Function} handler ÊÂ¼ş´¦Àíº¯Êı
- * @returns {MapsEventListener} ÊÂ¼ş¼àÌı¶ÔÏó
+ * æ·»åŠ åœ°å›¾äº‹ä»¶ç›‘å¬å‡½æ•°ï¼Œå‡½æ•°ä»…æ‰§è¡Œä¸€æ¬¡
+ * @param {Object} éœ€è¦ç›‘å¬çš„å®ä¾‹
+ * @param {String} äº‹ä»¶åç§°
+ * @param {Function} äº‹ä»¶å¤„ç†å‡½æ•°
+ * @returns {MapsEventListener} äº‹ä»¶ç›‘å¬å¯¹è±¡
  */
-BMapLib.EventWrapper.addListenerOnce = function(instance, eventName, handler){
+EventWrapper['addListenerOnce'] = function(instance, eventName, handler){
     var eventListener = EventWrapper['addListener'](instance, eventName, function(){
-        // ÒÆ³ı
+        // ç§»é™¤
         EventWrapper['removeListener'](eventListener);
         return handler.apply(this, arguments);
     });
     return eventListener;
 };
 /**
- * ÒÆ³ıÌØ¶¨ÊµÀıµÄËùÓĞÊÂ¼şµÄËùÓĞ¼àÌıº¯Êı
- * @param {Object} instance ĞèÒªÒÆ³ıËùÓĞÊÂ¼ş¼àÌıµÄÊµÀı
+ * ç§»é™¤ç‰¹å®šå®ä¾‹çš„æ‰€æœ‰äº‹ä»¶çš„æ‰€æœ‰ç›‘å¬å‡½æ•°
+ * @param {Object} éœ€è¦ç§»é™¤æ‰€æœ‰äº‹ä»¶ç›‘å¬çš„å®ä¾‹
  * @returns {None}
  */
-BMapLib.EventWrapper.clearInstanceListeners = function(instance) {
+EventWrapper['clearInstanceListeners'] = function(instance) {
     var listeners = instance._e_ || {};
     for (var i in listeners) {
         EventWrapper['removeListener'](listeners[i]);
@@ -89,12 +88,12 @@ BMapLib.EventWrapper.clearInstanceListeners = function(instance) {
     instance._e_ = {};
 };
 /**
- * ÒÆ³ıÌØ¶¨ÊµÀıÌØ¶¨ÊÂ¼şµÄËùÓĞ¼àÌıº¯Êı
- * @param {Object} instance ĞèÒªÒÆ³ıÌØ¶¨ÊÂ¼ş¼àÌıµÄÊµÀı
- * @param {String} event ĞèÒªÒÆ³ıµÄÊÂ¼şÃû
+ * ç§»é™¤ç‰¹å®šå®ä¾‹ç‰¹å®šäº‹ä»¶çš„æ‰€æœ‰ç›‘å¬å‡½æ•°
+ * @param {Object} éœ€è¦ç§»é™¤ç‰¹å®šäº‹ä»¶ç›‘å¬çš„å®ä¾‹
+ * @param {String} éœ€è¦ç§»é™¤çš„äº‹ä»¶å
  * @returns {None}
  */
-BMapLib.EventWrapper.clearListeners = function(instance, eventName) {
+EventWrapper['clearListeners'] = function(instance, eventName) {
     var listeners = instance._e_ || {};
     for (var i in listeners) {
         if (listeners[i]._eventName == eventName) {
@@ -103,11 +102,11 @@ BMapLib.EventWrapper.clearListeners = function(instance, eventName) {
     }
 };
 /**
- * ÒÆ³ıÌØ¶¨µÄÊÂ¼ş¼àÌıº¯Êı
- * @param {MapsEventListener} listener ĞèÒªÒÆ³ıµÄÊÂ¼ş¼àÌı¶ÔÏó
+ * ç§»é™¤ç‰¹å®šçš„äº‹ä»¶ç›‘å¬å‡½æ•°
+ * @param {MapsEventListener} éœ€è¦ç§»é™¤çš„äº‹ä»¶ç›‘å¬å¯¹è±¡
  * @returns {None}
  */
-BMapLib.EventWrapper.removeListener = function(listener) {
+EventWrapper['removeListener'] = function(listener) {
     var instance = listener._instance;
     var eventName = listener._eventName;
     var handler = listener._handler;
@@ -115,7 +114,7 @@ BMapLib.EventWrapper.removeListener = function(listener) {
     for (var i in listeners) {
         if (listeners[i]._guid == listener._guid) {
             if (listener._eventType == MapsEventListener.DOM_EVENT) {
-                // DOMÊÂ¼ş
+                // DOMäº‹ä»¶
                 if (instance.removeEventListener) {
                     instance.removeEventListener(eventName, handler, false);
                 }
@@ -127,7 +126,7 @@ BMapLib.EventWrapper.removeListener = function(listener) {
                 }
             }
             else if (listener._eventType == MapsEventListener.MAP_EVENT) {
-                // µØÍ¼ÊÂ¼ş
+                // åœ°å›¾äº‹ä»¶
                 instance.removeEventListener(eventName, handler);
             }
             delete listeners[i];
@@ -135,13 +134,13 @@ BMapLib.EventWrapper.removeListener = function(listener) {
     }
 };
 /**
- * ´¥·¢ÌØ¶¨ÊÂ¼ş
- * @param {Object} instance ´¥·¢ÊÂ¼şµÄÊµÀı¶ÔÏó
- * @param {String} event ´¥·¢ÊÂ¼şµÄÃû³Æ
- * @param {Object} args ×Ô¶¨ÒåÊÂ¼ş²ÎÊı£¬¿ÉÑ¡
+ * è§¦å‘ç‰¹å®šäº‹ä»¶
+ * @param {Object} è§¦å‘äº‹ä»¶çš„å®ä¾‹å¯¹è±¡
+ * @param {String} è§¦å‘äº‹ä»¶çš„åç§°
+ * @param {Object} è‡ªå®šä¹‰äº‹ä»¶å‚æ•°ï¼Œå¯é€‰
  * @returns {None}
  */
-BMapLib.EventWrapper.trigger = function(instance, eventName) {
+EventWrapper['trigger'] = function(instance, eventName) {
     var listeners = instance._e_ || {};
     for (var i in listeners) {
         if (listeners[i]._eventName == eventName) {
@@ -152,14 +151,14 @@ BMapLib.EventWrapper.trigger = function(instance, eventName) {
 };
 
 /**
- * ÊÂ¼ş¼àÌıÀà
+ * äº‹ä»¶ç›‘å¬ç±»
  * @constructor
  * @ignore
  * @private
- * @param {Object} ¶ÔÏóÊµÀı
- * @param {string} ÊÂ¼şÃû³Æ
- * @param {Function} ÊÂ¼ş¼àÌıº¯Êı
- * @param {EventTypes} ÊÂ¼şÀàĞÍ
+ * @param {Object} å¯¹è±¡å®ä¾‹
+ * @param {string} äº‹ä»¶åç§°
+ * @param {Function} äº‹ä»¶ç›‘å¬å‡½æ•°
+ * @param {EventTypes} äº‹ä»¶ç±»å‹
  */
 function MapsEventListener(instance, eventName, handler, eventType){
     this._instance = instance;

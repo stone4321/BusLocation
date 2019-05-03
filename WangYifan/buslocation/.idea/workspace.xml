@@ -12,52 +12,34 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/siteInfoQuery.html">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/mapUtil.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="148" column="58" lean-forward="true" selection-start-line="148" selection-start-column="58" selection-end-line="148" selection-end-column="58" />
+            <state relative-caret-position="350">
+              <caret line="389" column="15" lean-forward="true" selection-start-line="389" selection-start-column="15" selection-end-line="389" selection-end-column="15" />
               <folding>
-                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#div#3;n#body#0;n#html#0;n#!!top" />
+                <element signature="e#14982#15299#0" />
+                <element signature="e#15373#15749#0" />
+                <element signature="e#15816#18870#0" />
+                <element signature="e#18943#19862#0" />
+                <element signature="e#19929#20240#0" />
+                <element signature="e#20314#20584#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/mapUtil.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/realTimeQuery.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="355" column="29" lean-forward="true" selection-start-line="355" selection-start-column="29" selection-end-line="355" selection-end-column="29" />
+            <state relative-caret-position="195">
+              <caret line="149" column="49" selection-start-line="149" selection-start-column="49" selection-end-line="149" selection-end-column="49" />
               <folding>
-                <element signature="e#651#2488#0" />
-                <element signature="e#2578#2998#0" />
-                <element signature="e#3052#3172#0" />
-                <element signature="e#3223#3340#0" />
-                <element signature="e#3401#3714#0" />
-                <element signature="e#3771#4025#0" />
-                <element signature="e#4134#4499#0" />
-                <element signature="e#4555#5413#0" />
-                <element signature="e#5460#5856#0" />
-                <element signature="e#5910#6205#0" />
-                <element signature="e#6263#6398#0" />
-                <element signature="e#6481#6669#0" />
-                <element signature="e#6723#6829#0" />
-                <element signature="e#6897#7622#0" />
-                <element signature="e#7689#7972#0" />
-                <element signature="e#8026#8166#0" />
-                <element signature="e#8235#8665#0" />
-                <element signature="e#8755#9059#0" />
-                <element signature="e#9150#11433#0" />
-                <element signature="e#14743#17797#0" />
-                <element signature="e#14978#17426#0" />
-                <element signature="e#17484#17787#0" />
-                <element signature="e#17870#18916#0" />
-                <element signature="e#18983#19294#0" />
-                <element signature="e#19361#19621#0" />
+                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#3;n#body#0;n#html#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -76,17 +58,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>curStationNames</find>
-      <find>points</find>
-      <find>addRouteOption</find>
-      <find>addSelectOptions</find>
-      <find>this</find>
-      <find>openWindow</find>
-      <find>stationName</find>
-      <find>oMap</find>
-      <find>analyzePosition</find>
-      <find>addStationMarkersClick</find>
-      <find>initialSidenav</find>
       <find>addDropdownChange</find>
       <find>addRouteMarkers</find>
       <find>hello</find>
@@ -98,7 +69,6 @@
       <find>&lt;</find>
       <find>&lt;br /&gt;</find>
       <find>登陆</find>
-      <find>刷新</find>
       <find>addMarker</find>
       <find>jQuery</find>
       <find>map</find>
@@ -106,6 +76,18 @@
       <find>initialStationDropDown</find>
       <find>initialDropDown</find>
       <find>windowHeight</find>
+      <find>$this.addRouteMarkers(&quot;./images/yuan.png&quot;);</find>
+      <find>$this.addRouteMarkers(&quot;./images/yuanxing.png&quot;);</find>
+      <find>.sidenav .list-group-item i</find>
+      <find>calDegree</find>
+      <find>.siden i</find>
+      <find>刷新</find>
+      <find>let rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 2]);</find>
+      <find>let rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 4]</find>
+      <find>let rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 4];</find>
+      <find>rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 4]);</find>
+      <find>rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 4])</find>
+      <find>let rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 4])</find>
     </findStrings>
     <replaceStrings>
       <replace>sidenav</replace>
@@ -120,6 +102,11 @@
       <replace>jQuery</replace>
       <replace>initialStationDropdown</replace>
       <replace>initialDropdown</replace>
+      <replace>$this.addRouteMarkers(&quot;./images/yuanxing.png&quot;);</replace>
+      <replace>$this.addRouteMarkers(&quot;./images/ditu-dibiao.png&quot;);</replace>
+      <replace>let rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 4]</replace>
+      <replace>let rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 4];</replace>
+      <replace>let rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 4])</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -163,16 +150,16 @@
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/teacherLogin.html" />
         <option value="$PROJECT_DIR$/css/siteInfoQuery.css" />
-        <option value="$PROJECT_DIR$/css/realTimeQuery.css" />
-        <option value="$PROJECT_DIR$/realTimeQuery.html" />
         <option value="$PROJECT_DIR$/siteInfoQuery.html" />
+        <option value="$PROJECT_DIR$/realTimeQuery.html" />
+        <option value="$PROJECT_DIR$/css/realTimeQuery.css" />
         <option value="$PROJECT_DIR$/js/mapUtil.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="276" />
+    <option name="y" value="57" />
     <option name="width" value="911" />
     <option name="height" value="745" />
   </component>
@@ -192,7 +179,12 @@
             <path>
               <item name="buslocation" type="b2602c69:ProjectViewProjectNode" />
               <item name="buslocation" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="font" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="buslocation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="buslocation" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="buslocation" type="b2602c69:ProjectViewProjectNode" />
@@ -209,7 +201,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/My Study/JS" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -217,11 +209,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\MyRepository\BusLocation\WangYifan\buslocation\images" />
+      <recent name="D:\MyRepository\BusLocation\WangYifan\buslocation\font" />
       <recent name="D:\MyRepository\BusLocation\WangYifan\buslocation\js" />
       <recent name="D:\MyRepository\BusLocation\WangYifan\buslocation" />
       <recent name="D:\MyRepository\BusLocation\WangYifan" />
-      <recent name="D:\MyRepository\BusLocation\WangYifan\buslocation\images" />
-      <recent name="D:\MyRepository\BusLocation\WangYifan\buslocation\font" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -269,12 +261,15 @@
       <workItem from="1555761548461" duration="334000" />
       <workItem from="1555767240595" duration="1358000" />
       <workItem from="1555839119590" duration="20661000" />
-      <workItem from="1555891280509" duration="11676000" />
+      <workItem from="1555891280509" duration="25267000" />
+      <workItem from="1555928488582" duration="389000" />
+      <workItem from="1555931175608" duration="597000" />
+      <workItem from="1555981766608" duration="3646000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="295050000" />
+    <option name="totallyTimeSpent" value="313273000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -287,7 +282,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17113096" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -426,13 +420,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test.html" />
-    <entry file="file://$PROJECT_DIR$/locationTest.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/managerLogin.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="139">
@@ -526,34 +513,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/realTimeQuery.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="60" column="21" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/siteInfoQuery.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/BMapLib_EventWrapper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="725">
-          <caret line="29" column="36" lean-forward="true" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/css/siteInfoQuery.css" />
+    <entry file="file://$PROJECT_DIR$/js/BMapLib_EventWrapper.js" />
     <entry file="file://$PROJECT_DIR$/js/realTimeQuery.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/EventWrapper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-150" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/yuanxing.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/siteInfoQuery.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+          <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/realTimeQuery.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1225">
+          <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/locationTest.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="32" column="21" lean-forward="true" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/realTimeQuery.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="121" column="14" lean-forward="true" selection-start-line="121" selection-start-column="14" selection-end-line="121" selection-end-column="14" />
+        <state relative-caret-position="195">
+          <caret line="149" column="49" selection-start-line="149" selection-start-column="49" selection-end-line="149" selection-end-column="49" />
           <folding>
             <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
@@ -563,48 +565,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/siteInfoQuery.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="148" column="58" lean-forward="true" selection-start-line="148" selection-start-column="58" selection-end-line="148" selection-end-column="58" />
-          <folding>
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/mapUtil.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="355" column="29" lean-forward="true" selection-start-line="355" selection-start-column="29" selection-end-line="355" selection-end-column="29" />
+        <state relative-caret-position="350">
+          <caret line="389" column="15" lean-forward="true" selection-start-line="389" selection-start-column="15" selection-end-line="389" selection-end-column="15" />
           <folding>
-            <element signature="e#651#2488#0" />
-            <element signature="e#2578#2998#0" />
-            <element signature="e#3052#3172#0" />
-            <element signature="e#3223#3340#0" />
-            <element signature="e#3401#3714#0" />
-            <element signature="e#3771#4025#0" />
-            <element signature="e#4134#4499#0" />
-            <element signature="e#4555#5413#0" />
-            <element signature="e#5460#5856#0" />
-            <element signature="e#5910#6205#0" />
-            <element signature="e#6263#6398#0" />
-            <element signature="e#6481#6669#0" />
-            <element signature="e#6723#6829#0" />
-            <element signature="e#6897#7622#0" />
-            <element signature="e#7689#7972#0" />
-            <element signature="e#8026#8166#0" />
-            <element signature="e#8235#8665#0" />
-            <element signature="e#8755#9059#0" />
-            <element signature="e#9150#11433#0" />
-            <element signature="e#14743#17797#0" />
-            <element signature="e#14978#17426#0" />
-            <element signature="e#17484#17787#0" />
-            <element signature="e#17870#18916#0" />
-            <element signature="e#18983#19294#0" />
-            <element signature="e#19361#19621#0" />
+            <element signature="e#14982#15299#0" />
+            <element signature="e#15373#15749#0" />
+            <element signature="e#15816#18870#0" />
+            <element signature="e#18943#19862#0" />
+            <element signature="e#19929#20240#0" />
+            <element signature="e#20314#20584#0" />
           </folding>
         </state>
       </provider>

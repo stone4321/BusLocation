@@ -27,7 +27,6 @@
             $this.map = new BMap.Map(map);
             //初始化路线数据
             $this.routeMessage = routeMessage;
-
             //初始化路线索引
             $this.routeIndex = 0;
             //站点解析
@@ -43,7 +42,11 @@
             //站点名称解析
             $this.analyzeRouteName();
             //初始化站点标注
-            $this.addRouteMarkers();
+            if(trackMessage !== null){
+                $this.addRouteMarkers("./images/yuanxing.png","./images/qidian.png","./images/zhongdian.png");
+            } else {
+                $this.addRouteMarkers("./images/ditu-dibiao.png","./images/qidian.png","./images/zhongdian.png",32);
+            }
             //轨迹数据判断
             if(trackMessage !== null){
                 //初始化轨迹数据
@@ -59,12 +62,17 @@
                 }
                 //初始化轨迹
                 $this.addRoute();
-                //初始化箭头角度
+                /*//初始化箭头角度
                 let $trackPoints = $this.trackPoints;
                 let len = $trackPoints.length;
-                let rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 2]);
+                console.log($trackPoints);
+                let rotate;
+                if($trackPoints.length > 4)
+                    rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 4]);
+                else
+                    rotate = 0;*/
                 //初始化箭头标注
-                $this.addRow($trackPoints[len - 1], rotate);
+                $this.addRow($this.trackPoints[$this.trackPoints.length - 1], 0);
             } else {
                 $this.isRealTimePage = false;
             }
@@ -124,31 +132,31 @@
             return marker;
         },
         //添加站点标注
-        addRouteMarkers: function () {
+        addRouteMarkers: function (stationIcon,startIcon,endIcon,stationSize = 16) {
             let $this = this;
             let $markers = $this.stationMarkers;
             let $points = $this.stationPoints;
             let marker;
             //画起点
-            $this.addMarker($points[0], "./images/qidian.png", 32, 32, 16, 32);
-            marker = $this.addMarker($points[0], "./images/yuan.png", 16, 16, 8, 8);
+            marker = $this.addMarker($points[0], startIcon, 32, 32, 16, 32);
             $markers.push(marker);
+            $this.map.panTo($points[0]);
             //画站点
             for (let i = 1; i < $points.length - 1; i++) {
-                marker = $this.addMarker($points[i], "./images/ditu-yuan.png", 16, 16, 8, 8);
+                marker = $this.addMarker($points[i], stationIcon, stationSize, stationSize, stationSize/2, stationSize);
                 $markers.push(marker);
             }
             //画终点
-            $this.addMarker($points[$points.length - 1], "./images/zhongdian.png", 32, 32, 16, 32);
-            marker = $this.addMarker($points[$points.length - 1], "./images/yuan.png", 16, 16, 8, 8);
+            marker = $this.addMarker($points[$points.length - 1], endIcon, 32, 32, 16, 32);
             $markers.push(marker);
+
         },
         //添加轨迹
         addRoute: function () {
             let $this = this;
             let $map = $this.map;
             let $trackPoints = $this.trackPoints;
-            $map.setCenter($trackPoints[0]);
+            $map.panTo($trackPoints[0]);
             $this.polyline = new BMap.Polyline($trackPoints, {
                 strokeColor: "red",
                 strokeWeight: 3,
@@ -159,14 +167,16 @@
         //计算角度
         calDegree: function (p1, p2) {
             //计算弧度
-            let dx = p1.lng - p2.lng;
-            let dy = p1.lat - p2.lat;
+            let dx = p1.lat - p2.lat;
+            let dy = p1.lng - p2.lng;
             let radian = Math.atan2(dy, dx);
+            console.log(`p1.x=${p1.lat},p1.y=${p1.lng}`);
+            console.log(`p2.x=${p2.lat},p2.y=${p2.lng}`);
             //转换为角度
             let degree = radian * (180 / Math.PI);
+            console.log(degree);
             //误差调整
-            degree -= 45;
-            return -degree;
+            return -degree + 45;
         },
         //添加箭头
         addRow: function (point, rotate) {
@@ -192,7 +202,7 @@
             let $this = this;
             let $routeMessage = $this.routeMessage;
             let oTitle = $("<div class='infoTitle'><span>" + $routeMessage[$this.routeIndex].routeName + "</span><small>" + stationMessage.stationName + "<small/></div>").get(0);
-            let oContent = $("<div class='infoContent'><p>最晚发车时间：" + stationMessage.deadTime + "</p><p>上一站：" + stationMessage.prevStation + "</p><p>下一站：" + stationMessage.nextStation + "</p></div>").get(0);
+            let oContent = $("<div class='infoContent'><p>最晚发车时间：" + stationMessage.departTime + "</p><p>上一站：" + stationMessage.prevStation + "</p><p>下一站：" + stationMessage.nextStation + "</p></div>").get(0);
             let infoWindow = new BMap.InfoWindow();
             infoWindow.setWidth(200);
             infoWindow.setHeight(100);
@@ -220,11 +230,15 @@
             let $map = $this.map;
             let $windows = $this.stationInfoWindows;
             let $points = $this.stationPoints;
-            let $markers = $this.stationMarkers;
-            for (let i = 0; i < $markers.length; i++) {
-                $markers[i].addEventListener('click', function () {
+
+            // BMapLib.EventWrapper.trigger(instance, event, args)
+            for (let i = 0; i < $this.stationMarkers.length; i++) {
+                BMapLib.EventWrapper.addListener($this.stationMarkers[i], 'click', function(){
                     $this.openWindow(i);
-                }, false);
+                })
+                // $markers[i].addEventListener('click', function () {
+                //     $this.openWindow(i);
+                // }, false);
             }
         },
 
@@ -246,6 +260,8 @@
             $select.change(function () {
                 //切换线路
                 $this.routeIndex = this.selectedIndex;
+                //设置地图缩放等级
+                $this.map.setZoom(15);
                 //清空站点信息
                 $this.stations = [];
                 $this.stationPoints = [];
@@ -265,7 +281,11 @@
                 $this.analyzeRouteName();
                 //重构站点标注
                 $map.clearOverlays();
-                $this.addRouteMarkers();
+                if($this.isRealTimePage === true){
+                    $this.addRouteMarkers("./images/yuanxing.png","./images/qidian.png","./images/zhongdian.png");
+                } else {
+                    $this.addRouteMarkers("./images/ditu-dibiao.png","./images/qidian.png","./images/zhongdian.png",32);
+                }
                 //重构站点信息
                 $this.createStationInfoWindows();
                 $this.addStationMarkersClick();
@@ -286,12 +306,15 @@
                     }
                     //初始化轨迹
                     $this.addRoute();
-                    //初始化箭头角度
+                    /*//初始化箭头角度
                     let $trackPoints = $this.trackPoints;
                     let len = $trackPoints.length;
-                    let rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 2]);
+                    if($trackPoints.length > 4)
+                    rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 4]);
+                else
+                    rotate = 0;//初始化箭头标注*/
                     //初始化箭头标注
-                    $this.addRow($trackPoints[len - 1], rotate);
+                    $this.addRow($this.trackPoints[$this.trackPoints.length - 1], 0);
                 }
             });
 
@@ -303,6 +326,8 @@
             $select.change(function () {
                 //切换线路
                 $this.routeIndex = this.selectedIndex;
+                //设置地图缩放等级
+                $this.map.setZoom(15);
                 //清空站点信息
                 $this.stations = [];
                 $this.stationPoints = [];
@@ -322,32 +347,47 @@
                 $this.analyzeRouteName();
                 //重构站点标注
                 $map.clearOverlays();
-                $this.addRouteMarkers();
+                if($this.isRealTimePage){
+                    $this.addRouteMarkers("./images/yuanxing.png","./images/qidian.png","./images/zhongdian.png");
+                } else {
+                    $this.addRouteMarkers("./images/ditu-dibiao.png","./images/qidian.png","./images/zhongdian.png",32);
+                }
                 $map.panTo($this.stationPoints[0]);
+
                 //隐藏信息弹窗
                 $pop.animate({bottom: -70}, 1000);
                 //添加手机站点信息弹窗点击事件
                 $this.addStationMarkersPop($pop);
+                //添加路线
                 if($this.isRealTimePage === true) {
+                    $this.tracks = [];
+                    $this.trackPoints= [];
+
                     //轨迹解析
                     $this.analyzeTrack();
                     //轨迹坐标解析
-                    $this.trackPoints = $this.analyzePosition($this.tracks);
+                    let qqTracks = $this.analyzePosition($this.tracks);
+                    for(let i = 0; i < qqTracks.length; i++){
+                        let obj = $this.qqMapTransBMap(qqTracks[i].lng,qqTracks[i].lat);
+                        let bdPoint = new BMap.Point(obj.lng,obj.lat);
+                        $this.trackPoints.push(bdPoint);
+                    }
                     //初始化轨迹
                     $this.addRoute();
-                    //初始化箭头角度（待做）
+                    /*//初始化箭头角度
                     let $trackPoints = $this.trackPoints;
                     let len = $trackPoints.length;
-                    let rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 2]);
+                    if($trackPoints.length > 4)
+                    rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 4]);
+                else
+                    rotate = 0;//初始化箭头标注*/
                     //初始化箭头标注
-                    $this.addRow($trackPoints[len - 1], rotate);
+                    $this.addRow($this.trackPoints[$this.trackPoints.length - 1], 0);
                 } else {
                     //初始化站点下拉列表项
                     $this.initialStationDropdown($stDropdown);
                 }
-
             });
-
         },
         //初始化站点下拉列表
         initialStationDropdown: function ($select) {
@@ -364,15 +404,12 @@
         addStationDropdownChange: function($select){
             let $this = this;
             let $map = $this.map;
-            let $points = $this.stationPoints;
-            let $markers = $this.stationMarkers;
             $select.change(function(e1){
-                //获取index
+                //弹出信息窗口
                 let index = $select.get(0).selectedIndex;
-                $map.panTo($points[index]);
-                BMapLib.EventWrapper.trigger($markers[index], 'click',function(){
-                    alert('hello');
-                })
+                $map.panTo($this.stationPoints[index]);
+                BMapLib.EventWrapper.trigger($this.stationMarkers[index], 'click')
+                //添加标注
             })
         },
         //初始化刷新按钮
@@ -386,7 +423,7 @@
             //点击事件
             function refreshClick() {
                 $refresh.addClass('disabled');
-                $b.text(9);
+                $b.text(4);
                 //jQuery中的setInterval中的函数不能右参数列表!!
                 timer = setInterval(setCountDown, 1000);
                 // console.log($this.polyline);
@@ -417,8 +454,10 @@
                         //初始化箭头角度
                         let $trackPoints = $this.trackPoints;
                         let len = $trackPoints.length;
-                        let rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 2]);
-                        //初始化箭头标注
+                        if($trackPoints.length > 4)
+                    rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 4]);
+                else
+                    rotate = 0;//初始化箭头标注
                         $this.addRow($trackPoints[len - 1], rotate);
 
 
@@ -431,8 +470,10 @@
                         //初始化箭头角度
                         let $trackPoints = $this.trackPoints;
                         let len = $trackPoints.length;
-                        let rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 2]);
-                        //初始化箭头标注
+                        if($trackPoints.length > 4)
+                    rotate = $this.calDegree($trackPoints[len - 1], $trackPoints[len - 4]);
+                else
+                    rotate = 0;//初始化箭头标注
                         $this.addRow($trackPoints[len - 1], rotate);*/
                     },
                     async: false
@@ -464,18 +505,14 @@
             $sidenav.append($sideNavTitle);
             //创建并添加站点
             for (let i = 0; i < $stationNames.length; i++) {
-                let $stationItem = $this.createSideNavItem($stationNames[i]);
+                let $stationItem = $this.createSideNavItem($stationNames[i],i+1);
                 $sidenav.append($stationItem);
             }
-            //设置中心点
-            $map.panTo($points[0]);
             //添加点击事件
             $sidenav.delegate($(selector), 'click', function (e) {
                 //5.1获取索引
                 let itemIndex = $(e.target).index() - 1;
-                //5.2设置中心点
-                $map.panTo($points[itemIndex]);
-                //5.3弹出站点信息
+                //5.2弹出站点信息
                 $this.openWindow(itemIndex);
             });
         },
@@ -488,9 +525,9 @@
             return $title;
         },
         //创建站点
-        createSideNavItem: function (stationName) {
+        createSideNavItem: function (stationName,number) {
             let $item = $('<a href="#" class="list-group-item sidenav-item">\n' +
-                '                <i></i>\n' +
+                '                <i>'+number+'</i>\n' +
                 '                ' + stationName + '\n' +
                 '            </a>');
             return $item;
@@ -513,7 +550,7 @@
             let $next = $pop.find('.next');
 
             for (let i = 0; i < $markers.length; i++) {
-                $markers[i].addEventListener('click', function () {
+                BMapLib.EventWrapper.addListener($markers[i], 'click', function(){
                     //设置内容
                     $title.text($message[$this.routeIndex].routeName);
                     $cur.text($stations[i].stationName);
@@ -522,8 +559,18 @@
                     $next.text($stations[i].nextStation);
                     //弹出窗口
                     $pop.stop().animate({bottom: 50}, 500);
-                    //收回窗口
-                }, false);
+                })
+                // $markers[i].addEventListener('click', function () {
+                //     //设置内容
+                //     $title.text($message[$this.routeIndex].routeName);
+                //     $cur.text($stations[i].stationName);
+                //     $deadtime.text($stations[i].deadTime);
+                //     $prev.text($stations[i].prevStation);
+                //     $next.text($stations[i].nextStation);
+                //     //弹出窗口
+                //     $pop.stop().animate({bottom: 50}, 500);
+                //     //收回窗口
+                // }, false);
             }
             //监听收回按钮点击事件
             $drop.click(function () {
